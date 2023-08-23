@@ -19,7 +19,7 @@ jobs:
       - checkout
       - run:
           name: build and test with gradle
-          command: "gradle clean test"
+          command: "./gradlew clean test"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
