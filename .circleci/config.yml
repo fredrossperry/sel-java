@@ -25,14 +25,12 @@
 #   say-hello-workflow:
 #     jobs:
 #       - say-hello
-
-usage:
-  version: 2.1
-
-  orbs:
-    gradle: circleci/gradle@3.0.0
-
-  workflows:
-    checkout-build-test:
-      jobs:
-        - gradle/test
+#       
+      
+version: '2.1'
+orbs:
+  gradle: circleci/gradle@3.0.0
+workflows:
+  checkout-build-test:
+    jobs:
+      - gradle/test
