@@ -38,90 +38,107 @@ public class TestImplementation {
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/chromedriver");
     }
 
-    //@Test
-    // public void doTest()
-    // {
-    //     String url = "https:/www.ross-perry.com";
-    //     String newShotPath = "/Users/fredrossperry/Desktop/screenshot.png";
-    //     String oldShotPath = "/Users/fredrossperry/Desktop/screenshot-save.png";
-    //     String diffPath = "/Users/fredrossperry/Desktop/screenshot-diff.png";
-        
-    //     //  create a driver
-    //     //  fixed size so screen shots will compare.
-    //     ChromeOptions options = new ChromeOptions();
-    //     options.setHeadless(true);
-    //     options.addArguments("--window-size=1024x768");
-    //     WebDriver driver = new ChromeDriver(options);
+@Test
+public void doTest()
+{
+    //  create a driver
+    //  fixed size so screen shots will compare.
+    ChromeOptions options = new ChromeOptions();
+    options.setHeadless(true);
+    options.addArguments("--window-size=1024x768");
+    WebDriver driver = new ChromeDriver(options);
+    
+    //  go to the web site and verify that we got there.
+    driver.get("https://www.ross-perry.com");
+    assertThat(driver.getTitle(), containsString("Fred"));
+    
+    //  quit
+    driver.quit();
+    
+    
+}
+// {
+//     String url = "https:/www.ross-perry.com";
+//     String newShotPath = "/Users/fredrossperry/Desktop/screenshot.png";
+//     String oldShotPath = "/Users/fredrossperry/Desktop/screenshot-save.png";
+//     String diffPath = "/Users/fredrossperry/Desktop/screenshot-diff.png";
+	
+//     //  create a driver
+//     //  fixed size so screen shots will compare.
+//     ChromeOptions options = new ChromeOptions();
+//     options.setHeadless(true);
+//     options.addArguments("--window-size=1024x768");
+//     WebDriver driver = new ChromeDriver(options);
 
-    //     //  go to the web site and verify that we got there.
-    //     driver.get(url);
-    //     assertThat(driver.getTitle(), containsString("Fred"));
+//     //  go to the web site and verify that we got there.
+//     driver.get(url);
+//     assertThat(driver.getTitle(), containsString("Fred"));
 
-    //     //  find and click on the "Original Songs" tab
-    //     //  and verify
-    //     WebElement originalSongsTab = driver.findElement(By.xpath("//a[contains(.,'Original Songs')]"));
-    //     originalSongsTab.click();
-	// 	assertThat(driver.getTitle(), containsString("Original Songs"));
+//     //  find and click on the "Original Songs" tab
+//     //  and verify
+//     WebElement originalSongsTab = driver.findElement(By.xpath("//a[contains(.,'Original Songs')]"));
+//     originalSongsTab.click();
+// 	assertThat(driver.getTitle(), containsString("Original Songs"));
 
-    //     //  take a screen shot and save to a file
-    //     File destFile = new File(newShotPath);
-    //     TakesScreenshot scrShot =((TakesScreenshot)driver);
-    //     assertNotNull("srcShot is null", scrShot);
-    //     File srcFile=scrShot.getScreenshotAs(OutputType.FILE);
-    //     assertNotNull("srcFile is null", srcFile);
-    //     try {
-    //     	FileUtils.copyFile(srcFile, destFile);
-    //     }
-    //     catch (Exception e){
-    //     	assert(false);
-    //     }
+//     //  take a screen shot and save to a file
+//     File destFile = new File(newShotPath);
+//     TakesScreenshot scrShot =((TakesScreenshot)driver);
+//     assertNotNull("srcShot is null", scrShot);
+//     File srcFile=scrShot.getScreenshotAs(OutputType.FILE);
+//     assertNotNull("srcFile is null", srcFile);
+//     try {
+//     	FileUtils.copyFile(srcFile, destFile);
+//     }
+//     catch (Exception e){
+//     	assert(false);
+//     }
 
-    //     //  compare with a saved screen shot
-    //     try{
-    //         BufferedImage expectedImage = ImageIO.read(new File(oldShotPath));
-    //         BufferedImage actualImage = ImageIO.read(new File(newShotPath));
-    //         Boolean same = bufferedImagesEqual(expectedImage, actualImage);
+//     //  compare with a saved screen shot
+//     try{
+//         BufferedImage expectedImage = ImageIO.read(new File(oldShotPath));
+//         BufferedImage actualImage = ImageIO.read(new File(newShotPath));
+//         Boolean same = bufferedImagesEqual(expectedImage, actualImage);
 
-    //         //  produce a diff using imagemagick compare
-    //         Runtime rt = Runtime.getRuntime();
-    //         Process pr = rt.exec(String.format("compare %s %s %s", oldShotPath, newShotPath, diffPath));
-    //         int retVal = pr.waitFor();
+//         //  produce a diff using imagemagick compare
+//         Runtime rt = Runtime.getRuntime();
+//         Process pr = rt.exec(String.format("compare %s %s %s", oldShotPath, newShotPath, diffPath));
+//         int retVal = pr.waitFor();
 
-    //         assert(same);
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         assert(false);
-    //     }
+//         assert(same);
+//     }
+//     catch (Exception e)
+//     {
+//         assert(false);
+//     }
 
-    //     //  quit
-    //     driver.quit();
-    // }
-
-
-    @Test
-    public void doTest()
-    {   
-        //  create a driver
-        //  fixed size so screen shots will compare.
-        ChromeOptions options = new ChromeOptions();
-        options.setHeadless(true);
-        options.addArguments("--window-size=1024x768");
-        WebDriver driver = new ChromeDriver(options);
-
-        //  go to the web site and verify that we got there.
-        driver.get("http://127.0.0.1:8000/users");
-		String pre = driver.findElement(By.tagName("pre")).getText();
-		// System.out.println(pre);
-
-        JSONObject json = new JSONObject(pre);
-        System.out.println("hey hey hey"+json.toString());
+//     //  quit
+//     driver.quit();
+// }
 
 
-
-        //  quit
-        driver.quit();
-    }
+//     @Test
+//     public void doTest()
+//     {   
+//         //  create a driver
+//         //  fixed size so screen shots will compare.
+//         ChromeOptions options = new ChromeOptions();
+//         options.setHeadless(true);
+//         options.addArguments("--window-size=1024x768");
+//         WebDriver driver = new ChromeDriver(options);
+// 
+//         //  go to the web site and verify that we got there.
+//         driver.get("http://127.0.0.1:8000/users");
+// 		String pre = driver.findElement(By.tagName("pre")).getText();
+// 		// System.out.println(pre);
+// 
+//         JSONObject json = new JSONObject(pre);
+//         System.out.println("hey hey hey"+json.toString());
+// 
+// 
+// 
+//         //  quit
+//         driver.quit();
+//     }
 
     //  this does a pixel-by-pixel comparison of two images.
     private boolean bufferedImagesEqual(BufferedImage img1, BufferedImage img2) 
